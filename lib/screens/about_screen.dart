@@ -8,16 +8,13 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Tentang KenaliVaksin',
-              style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w600)),
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              })),
+        title: const Text('Tentang KenaliVaksin',
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600)),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
       body: ListView(
         children: <Widget>[
           Padding(
@@ -37,7 +34,7 @@ class AboutScreen extends StatelessWidget {
           const SizedBox(height: 6.0),
           InkWell(
             child: const Text(
-              'https://github.com/fathonix',
+              'github.com/fathonix',
               textAlign: TextAlign.center,
               style: TextStyle(
                 decoration: TextDecoration.underline,
@@ -46,7 +43,7 @@ class AboutScreen extends StatelessWidget {
               ),
             ),
             onTap: () => launch('https://github.com/fathonix'),
-          )
+          ),
         ],
       ),
     );

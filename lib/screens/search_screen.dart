@@ -10,23 +10,23 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<Vaccine> foundItems = [];
+  String _trimmedKeyword = '';
+  final List<Vaccine> _foundItems = [];
 
-  void onSearch(String keyword) {
-    final String trimmedKeyword = keyword.trim();
-    if (trimmedKeyword.isNotEmpty) {
-      List<Vaccine> dummyFoundItems = [];
+  void _onSearch() {
+    if (_trimmedKeyword.isNotEmpty) {
+      List<Vaccine> _dummyFoundItems = [];
       for (var item in vaccineLists) {
-        if (item.name.toLowerCase().contains(trimmedKeyword.toLowerCase())) {
-          dummyFoundItems.add(item);
+        if (item.name.toLowerCase().contains(_trimmedKeyword)) {
+          _dummyFoundItems.add(item);
         }
       }
       setState(() {
-        foundItems.clear();
-        foundItems.addAll(dummyFoundItems);
+        _foundItems.clear();
+        _foundItems.addAll(_dummyFoundItems);
       });
     } else {
-      setState(() => foundItems.clear());
+      setState(() => _foundItems.clear());
     }
   }
 
@@ -49,7 +49,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 )),
               ),
               onChanged: (value) {
-                onSearch(value);
+                _trimmedKeyword = value.trim().toLowerCase();
+                _onSearch();
               }),
         ),
         actions: <Widget>[
@@ -59,10 +60,10 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ],
       ),
-      body: foundItems.isNotEmpty
+      body: (_foundItems.isNotEmpty)
           ? itemList(
               context: context,
-              listVaccine: foundItems,
+              listVaccine: _foundItems,
             )
           : Center(
               child: Text(

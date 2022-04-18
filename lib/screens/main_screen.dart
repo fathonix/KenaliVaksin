@@ -15,6 +15,7 @@ class MainScreen extends StatelessWidget {
         title: const Text(
           'KenaliVaksin',
           style: TextStyle(
+            color: Colors.black,
             fontSize: 20,
             fontFamily: 'Pacifico',
           ),
@@ -22,7 +23,6 @@ class MainScreen extends StatelessWidget {
         titleTextStyle: const TextStyle(
           fontWeight: FontWeight.w600,
         ),
-        centerTitle: true,
         leading: IconButton(
             icon: const Icon(Icons.info_outline),
             onPressed: () {
@@ -34,7 +34,7 @@ class MainScreen extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).push(CustomPageRoute(const SearchScreen()));
             },
-          )
+          ),
         ],
       ),
       body: itemList(context: context),
